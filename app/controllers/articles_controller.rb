@@ -1,10 +1,19 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!, except: %i[index show]
+  SEARCH_STRING = 'title_or_action_text_rich_text_body_or_user_email_cont'.freeze
 
   def index
-    # Need to add searching
-    # Need to add pagination
-    @articles = Article.all
+    result =  if params[:category].present?
+                Article.tagged_with(params[:category], any: true)
+              elsif params[:search].present?
+                Article.ransack(SEARCH_STRING => params[:search]).result
+              elsif params[:my].present?
+                authenticate_user! if current_user.blank?
+                current_user.articles
+              else
+                Article.all
+              end
+    @articles = result.order(created_at: :desc).page params[:page]
   end
 
   def new

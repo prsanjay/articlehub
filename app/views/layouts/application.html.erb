@@ -10,9 +10,9 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
-    <div class="container">
-      <%= render 'layouts/alert_messages' %>
+    <%= render 'shared/navigation' %>
+    <div class="container my-5">
+      <%= render 'shared/alert_messages' %>
       <%= yield %>
     </div>
   </body>
