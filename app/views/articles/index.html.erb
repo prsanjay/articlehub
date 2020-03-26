@@ -25,7 +25,13 @@
         </tr>
       <% end %>
     <% else %>
-      "No articles found"
+      <tr></tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td><%= t('article.not_found')  %></td>
+        <td></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

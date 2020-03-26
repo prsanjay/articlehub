@@ -23,7 +23,7 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
-      redirect_to article_path(@article), notice: 'Article Created Successfully'
+      redirect_to article_path(@article), notice: I18n.t('article.create')
     else
       render :new
     end
@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
 
   def update
     if article.update(article_params)
-      redirect_to article_path(@article), notice: 'Article Updated Successfully'
+      redirect_to article_path(@article), notice: I18n.t('article.update')
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     article.destroy
-    redirect_to articles_path, notice: 'Article was successfully destroyed.'
+    redirect_to articles_path, notice: I18n.t('article.destroy')
   end
 
   private
