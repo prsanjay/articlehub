@@ -20,5 +20,3 @@ require("trix")
 require("@rails/actiontext")
 
 import './bootstrap_custom.js'
-
-import '../stylesheets/application'
