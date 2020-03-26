@@ -1,24 +1,31 @@
-# README
+# About
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Article hub would help you to create new articles using rich text editor. User can search articles by Author, Title, Text and categories.
 
-Things you may want to cover:
+Please find technical details below
 
-* Ruby version
+* Ruby version : Ruby 2.7.0
 
-* System dependencies
+* Rails Version : Rails 6.0.2
 
-* Configuration
+* Database: PostgreSQL
 
-* Database creation
 
-* Database initialization
+Steps to setup the project
 
-* How to run the test suite
+1.  Clone the repository
 
-* Services (job queues, cache servers, search engines, etc.)
+2.  Go to project directory
 
-* Deployment instructions
+3.  Run `gem install bundler` command to install bundler gem
 
-* ...
+4.  Run `bundle install` command to install all the gems
+
+5.  Run `yarn install` command to install all the packages
+
+6.  Configure your `databasy.yml` file
+
+7.  Run `rails db:setup` command to create and run migration
+
+8.  Run `rails server` command to run the server and visit `localhost:3000` in your web browser.
+
