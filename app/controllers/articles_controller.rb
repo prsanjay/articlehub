@@ -4,14 +4,14 @@ class ArticlesController < ApplicationController
 
   def index
     result =  if params[:category].present?
-                Article.tagged_with(params[:category], any: true)
+                Article.published.tagged_with(params[:category], any: true)
               elsif params[:search].present?
-                Article.ransack(SEARCH_STRING => params[:search]).result
+                Article.published.ransack(SEARCH_STRING => params[:search]).result
               elsif params[:my].present?
                 authenticate_user! if current_user.blank?
                 current_user.articles
               else
-                Article.all
+                Article.published.all
               end
     @articles = result.order(created_at: :desc).page params[:page]
   end

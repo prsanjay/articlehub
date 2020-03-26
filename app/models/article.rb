@@ -1,6 +1,4 @@
 class Article < ApplicationRecord
-  default_scope { where(status: :published) }
-
   paginates_per 10
 
   enum status: %i[draft published archived]
