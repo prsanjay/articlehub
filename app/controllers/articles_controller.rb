@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
+  before_action :authorize_user, only: %i[edit destroy]
   SEARCH_STRING = 'title_or_action_text_rich_text_body_or_user_email_cont'.freeze
 
   def index
@@ -58,5 +59,9 @@ class ArticlesController < ApplicationController
 
   def article
     @article ||= Article.find(params[:id])
+  end
+
+  def authorize_user
+    redirect_to articles_path, alert: 'You are not authorize!' if current_user.id != article.user_id
   end
 end
