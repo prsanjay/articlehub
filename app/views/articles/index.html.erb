@@ -9,21 +9,23 @@
   </thead>
 
   <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td>
-          <% article.category_list.each do |cat| %>
-            <%= link_to cat, articles_url(category: cat), class: 'badge badge-pill badge-primary'  %>
+    <% if @articles.present? %>
+      <% @articles.each do |article| %>
+        <tr>
+          <td><%= link_to article.title, article_path(article) %></td>
+          <td>
+            <%= category_cloud(article) %>
+          </td>
+          <td><%= article.user&.email %></td>
+          <td><%= link_to 'Show', article %></td>
+          <% if current_user.present? %>
+            <td><%= link_to 'Edit', edit_article_path(article) %></td>
+            <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           <% end %>
-        </td>
-        <td><%= article.user&.email %></td>
-        <td><%= link_to 'Show', article %></td>
-        <% if current_user.present? %>
-          <td><%= link_to 'Edit', edit_article_path(article) %></td>
-          <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+        </tr>
+      <% end %>
+    <% else %>
+      "No articles found"
     <% end %>
   </tbody>
 </table>

@@ -1,22 +1,24 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<div class="card">
+  <div class="card-header" style="text-align: center;">
+    <div class="mb-2"><strong><%= @article.title %></strong></div>
+    <div>
+      <span><strong>Author:</strong> <%= @article.user.email %></span>
+      <span class="ml-5"><strong>Published On: </strong> <%= @article.created_at.strftime("%m-%d-%Y") %></span>
+    </div>
 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
+  </div>
+  <div class="card-body">
+    <%= @article.text %>
+  </div>
+  <% if @article.category_list.present? %>
+    <hr>
+    <div class="card-body">
+      <strong>Categories</strong>
+      <%= category_cloud(@article) %>
+    </div>
+  <% end %>
+</div>
 
-<p>
-  <strong>Categories</strong>
-  <%= @article.category_list %>
-</p>
-
-<p>
-  <strong>Status</strong>
-  <%= @article.status %>
-</p>
 <% if current_user.present? %>
   <%= link_to 'Edit', edit_article_path(@article) %> |
 <% end %>
