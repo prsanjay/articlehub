@@ -29,3 +29,5 @@ Steps to setup the project
 
 8.  Run `rails server` command to run the server and visit `localhost:3000` in your web browser.
 
+
+Visit application at : https://myarticlehub.herokuapp.com/
